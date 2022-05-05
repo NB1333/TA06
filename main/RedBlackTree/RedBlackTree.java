@@ -4,31 +4,15 @@ import org.jetbrains.annotations.NotNull;
 
 public class RedBlackTree {
 
-    private Node root;
     private final Node NULL;
+    private Node root;
 
-    private void preOrderHelper(Node node) {
-        if (node != NULL) {
-            System.out.print(node.data + " ");
-            preOrderHelper(node.left);
-            preOrderHelper(node.right);
-        }
-    }
-
-    private void inOrderHelper(Node node) {
-        if (node != NULL) {
-            inOrderHelper(node.left);
-            System.out.print(node.data + " ");
-            inOrderHelper(node.right);
-        }
-    }
-
-    private void postOrderHelper(Node node) {
-        if (node != NULL) {
-            postOrderHelper(node.left);
-            postOrderHelper(node.right);
-            System.out.print(node.data + " ");
-        }
+    public RedBlackTree() {
+        NULL = new Node();
+        NULL.color = 0;
+        NULL.left = null;
+        NULL.right = null;
+        root = NULL;
     }
 
     private Node searchTreeHelper(Node node, int key) {
@@ -115,7 +99,8 @@ public class RedBlackTree {
 
     private void deleteNodeHelper(Node node, int key) {
         Node k = NULL;
-        Node x, y;
+        Node x;
+        Node y;
         while (node != NULL) {
             if (node.data == key) {
                 k = node;
@@ -210,6 +195,7 @@ public class RedBlackTree {
     private void printHelper(Node root, String indent, boolean last) {
         if (root != NULL) {
             System.out.print(indent);
+
             if (last) {
                 System.out.print("R----");
                 indent += "   ";
@@ -220,29 +206,10 @@ public class RedBlackTree {
 
             String sColor = root.color == 1 ? "RED" : "BLACK";
             System.out.println(root.data + "(" + sColor + ")");
+
             printHelper(root.left, indent, false);
             printHelper(root.right, indent, true);
         }
-    }
-
-    public RedBlackTree() {
-        NULL = new Node();
-        NULL.color = 0;
-        NULL.left = null;
-        NULL.right = null;
-        root = NULL;
-    }
-
-    public void preorder() {
-        preOrderHelper(this.root);
-    }
-
-    public void inorder() {
-        inOrderHelper(this.root);
-    }
-
-    public void postorder() {
-        postOrderHelper(this.root);
     }
 
     public Node searchTree(int k) {
@@ -256,39 +223,6 @@ public class RedBlackTree {
         return node;
     }
 
-    public Node maximum(Node node) {
-        while (node.right != NULL) {
-            node = node.right;
-        }
-        return node;
-    }
-
-    public Node successor(Node x) {
-        if (x.right != NULL) {
-            return minimum(x.right);
-        }
-
-        Node y = x.parent;
-        while (y != NULL && x == y.right) {
-            x = y;
-            y = y.parent;
-        }
-        return y;
-    }
-
-    public Node predecessor(Node x) {
-        if (x.left != NULL) {
-            return maximum(x.left);
-        }
-
-        Node y = x.parent;
-        while (y != NULL && x == y.left) {
-            x = y;
-            y = y.parent;
-        }
-
-        return y;
-    }
 
     public void leftRotate(Node x) {
         Node y = x.right;
@@ -367,9 +301,6 @@ public class RedBlackTree {
         fixInsert(node);
     }
 
-    public Node getRoot() {
-        return this.root;
-    }
 
     public void deleteNode(int data) {
         deleteNodeHelper(this.root, data);

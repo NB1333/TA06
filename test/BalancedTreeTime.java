@@ -1,9 +1,8 @@
 package test;
 
-import main.BST.RecursiveBST;
 import main.RedBlackTree.RedBlackTree;
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.Order;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;

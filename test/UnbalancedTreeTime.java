@@ -1,8 +1,8 @@
 package test;
 
 import main.BST.RecursiveBST;
-import org.testng.annotations.Test;
 import org.junit.jupiter.api.Order;
+import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,7 @@ public class UnbalancedTreeTime {
         }
 
         System.out.println("BST adding consecutive elements time: " + (System.nanoTime() - start) / 1000 + " mcs\n");
-        }
+    }
 
     @Test
     @Order(2)

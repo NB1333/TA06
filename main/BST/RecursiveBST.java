@@ -4,21 +4,11 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public class RecursiveBST<T extends Comparable<T>> implements IBST<T> {
-    private static class Node<T> {
-        T element;
-        Node<T> left;
-        Node<T> right;
-
-        public Node(T element) {
-            this.element = element;
-        }
-    }
-
     private Node<T> root;
     private int size;
 
     @SafeVarargs
-    public static <T extends Comparable<T>> RecursiveBST<T> of (T... elements) {
+    public static <T extends Comparable<T>> RecursiveBST<T> of(T... elements) {
         RecursiveBST<T> binarySearchTree = new RecursiveBST<>();
         Stream.of(elements).forEach(binarySearchTree::insert);
         return binarySearchTree;
@@ -79,8 +69,7 @@ public class RecursiveBST<T extends Comparable<T>> implements IBST<T> {
             } else {
                 return insert(current.left, element);
             }
-        }
-        else if (element.compareTo(current.element) > 0) {
+        } else if (element.compareTo(current.element) > 0) {
             if (current.right == null) {
                 current.right = new Node<>(element);
                 size++;
@@ -141,6 +130,16 @@ public class RecursiveBST<T extends Comparable<T>> implements IBST<T> {
             inOrderTraversal(current.left, consumer);
             consumer.accept(current.element);
             inOrderTraversal(current.right, consumer);
+        }
+    }
+
+    private static class Node<T> {
+        T element;
+        Node<T> left;
+        Node<T> right;
+
+        public Node(T element) {
+            this.element = element;
         }
     }
 }

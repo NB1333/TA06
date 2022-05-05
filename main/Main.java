@@ -1,8 +1,8 @@
 package main;
 
-import main.RedBlackTree.RedBlackTree;
 import main.BST.IBST;
 import main.BST.RecursiveBST;
+import main.RedBlackTree.RedBlackTree;
 
 public class Main {
 
